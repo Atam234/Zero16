@@ -23,9 +23,8 @@ test("PTY origin checks use the same allowlist and retain same-host access", () 
   expect(isAllowedRequestOrigin("http://192.168.1.10:3002", "192.168.1.10:1029", options)).toBe(false)
 })
 
-test("the mobile shell's WebView origins are allowed", () => {
+test("the Android shell's WebView origin is allowed", () => {
   expect(isAllowedCorsOrigin("http://localhost")).toBe(true)
-  expect(isAllowedCorsOrigin("capacitor://localhost")).toBe(true)
   expect(isAllowedCorsOrigin("http://localhost.evil.test")).toBe(false)
-  expect(isAllowedCorsOrigin("capacitor://example.com")).toBe(false)
+  expect(isAllowedCorsOrigin("capacitor://localhost")).toBe(false)
 })

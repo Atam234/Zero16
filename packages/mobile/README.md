@@ -1,6 +1,6 @@
 # @opencode/mobile
 
-Android (and later iOS) shell for the OpenCode web app, built with [Capacitor](https://capacitorjs.com).
+Android shell for the OpenCode web app, built with [Capacitor](https://capacitorjs.com).
 
 The shell bundles `packages/app` with `VITE_OPENCODE_SERVER_MODE=none`, so it starts on the connect screen. Pair it with a running opencode server by scanning the server's QR code or entering its URL and password. The phone must be able to reach the server (same LAN, Tailscale, and so on).
 
@@ -19,7 +19,7 @@ bun run apk           # or build a debug APK: android/app/build/outputs/apk/debu
 
 ## Notes
 
-- The WebView serves the bundle from `http://localhost` on Android and `capacitor://localhost` on iOS. The server allows both origins for CORS.
+- The WebView serves the bundle from `http://localhost`, which the server allows for CORS.
 - The Android app allows cleartext HTTP so it can reach servers on a LAN without TLS.
 - Camera and microphone permissions back QR pairing and voice input.
-- iOS: run `bunx cap add ios` on a Mac with Xcode.
+- The app targets Android only; there is no iOS project.
