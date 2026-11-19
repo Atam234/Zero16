@@ -15,6 +15,8 @@ export function isAllowedCorsOrigin(input: string | undefined, opts?: CorsOption
   if (input.startsWith("oc://renderer")) return true
   if (input === "tauri://localhost" || input === "http://tauri.localhost" || input === "https://tauri.localhost")
     return true
+  // The Capacitor mobile shell serves its bundle from these fixed WebView origins (Android, iOS).
+  if (input === "http://localhost" || input === "capacitor://localhost") return true
   if (opencodeOrigin.test(input)) return true
   return opts?.cors?.includes(input) ?? false
 }

@@ -1,0 +1,21 @@
+{
+  "name": "@opencode/mobile",
+  "private": true,
+  "version": "2.3.0",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "build": "bun run script/build.ts",
+    "sync": "bun run build && cap sync android",
+    "open:android": "cap open android",
+    "apk": "bun run sync && cd android && ./gradlew assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.6.2",
+    "@capacitor/core": "8.6.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.6.2",
+    "@opencode/app": "workspace:*"
+  }
+}
