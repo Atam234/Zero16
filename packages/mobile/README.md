@@ -17,6 +17,10 @@ bun run open:android  # open the project in Android Studio
 bun run apk           # or build a debug APK: android/app/build/outputs/apk/debug/app-debug.apk
 ```
 
+## CI
+
+The `Android APK` workflow (`.github/workflows/build-android.yml`) builds a debug APK on every push or pull request that touches `packages/mobile`, and on manual dispatch. Download it from the run's `opencode-android-debug` artifact.
+
 ## Notes
 
 - The WebView serves the bundle from `http://localhost`, which the server allows for CORS.
