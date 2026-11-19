@@ -12,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -60,3 +60,15 @@ jobs:
           name: opencode-android-debug
           path: packages/mobile/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      # A fixed tag gives the latest APK a stable download link that works on a phone without signing in.
+      - name: Publish APK release
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp packages/mobile/android/app/build/outputs/apk/debug/app-debug.apk opencode.apk
+          gh release delete android-latest --yes --cleanup-tag || true
+          gh release create android-latest opencode.apk --target "$GITHUB_SHA" --prerelease \
+            --title "OpenCode Android (latest)" \
+            --notes "Debug APK built from ${GITHUB_REF_NAME} at ${GITHUB_SHA}."
